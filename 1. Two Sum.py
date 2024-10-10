@@ -3,14 +3,12 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        result = None
-        for index, item in enumerate(nums):
-            difference = target - item
-            nums[index] = -2
-            if difference in nums[index+1:]:
-                index_2 = nums.index(difference)
-                result = [index, index_2]
-        return result
+        nums_to_index = {}
+        for i in range(len(nums)):
+            if target - nums[i] in nums_to_index:
+                return [nums_to_index[target-nums[i]], i]
+            nums_to_index[nums[i]] = i
+        return []
 
 
 nums = [3,2,3]
